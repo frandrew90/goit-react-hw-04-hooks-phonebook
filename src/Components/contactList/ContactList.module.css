@@ -1,0 +1,26 @@
+.contactListItem {
+  color: rgb(21, 21, 161);
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.contactListName {
+  display: inline-block;
+  width: 15%;
+}
+
+.contactListNumber {
+  display: inline-block;
+  width: 80px;
+}
+
+.contactListItemBtn {
+  margin-left: 30px;
+  color: rgb(21, 21, 161);
+  cursor: pointer;
+}
+
+.contactListItemBtn:hover {
+  background-color: rgb(66, 66, 201);
+  color: #fff;
+}

@@ -1,0 +1,35 @@
+.contactForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactFormName {
+  text-decoration: underline;
+}
+
+.contactFormNameInput {
+  margin-left: 26px;
+  width: 270px;
+}
+
+.contactFormNumber {
+  margin-top: 10px;
+  text-decoration: underline;
+}
+
+.contactFormNumInput {
+  margin-left: 10px;
+  width: 270px;
+}
+
+.contactFormBtn {
+  width: 350px;
+  margin-top: 10px;
+  color: rgb(21, 21, 161);
+  cursor: pointer;
+}
+
+.contactFormBtn:hover {
+  background-color: rgb(66, 66, 201);
+  color: #fff;
+}
