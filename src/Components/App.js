@@ -24,7 +24,8 @@ const App = () => {
       // setState(prevState => ({ ...prevState, contacts }));
       setСontactsList([...contactsList, ...contacts]);
     }
-    // console.log(state);
+
+    // eslint-disable-next-line
   }, []);
   // console.log(state);
   // componentDidMount() {
