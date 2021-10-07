@@ -5,25 +5,28 @@ import ContactForm from './contatctForm/ContactForm';
 import Filter from './filter/Filter';
 import s from '../Components/App.module.css';
 
-const initialState = {
-  contacts: [],
+// const initialState = {
+//   contactsList: [],
 
-  filter: '',
-};
+//   filter: '',
+// };
 
 const App = () => {
-  const [state, setState] = useState(initialState);
+  const [contactsList, setСontactsList] = useState([]);
+  const [filter, setFilter] = useState('');
+  // const [state, setState] = useState(initialState);
 
   // const contacts = JSON.parse(localStorage.getItem('contacts'));
-  console.log('1', state);
+  // console.log('1', state);
   useEffect(() => {
     const contacts = JSON.parse(localStorage.getItem('contacts'));
     if (contacts) {
-      setState(prevState => ({ ...prevState, contacts }));
+      // setState(prevState => ({ ...prevState, contacts }));
+      setСontactsList([...contactsList, ...contacts]);
     }
     // console.log(state);
   }, []);
-  console.log(state);
+  // console.log(state);
   // componentDidMount() {
   //   const contacts = JSON.parse(localStorage.getItem('contacts'));
   //   if (contacts) {
@@ -32,8 +35,8 @@ const App = () => {
   // }
 
   useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(state.contacts));
-  }, [state.contacts]);
+    localStorage.setItem('contacts', JSON.stringify(contactsList));
+  }, [contactsList]);
 
   // componentDidUpdate(prevState) {
   //   if (prevState.contacts !== state.contacts) {
@@ -42,34 +45,38 @@ const App = () => {
   // }
 
   const addNewContact = newContact => {
-    setState(prevState => ({
-      ...prevState,
-      contacts: [...prevState.contacts, { ...newContact, id: uuidv4() }],
-    }));
+    setСontactsList([...contactsList, { ...newContact, id: uuidv4() }]);
+    // setState(prevState => ({
+    //   ...prevState,
+    //   contacts: [...prevState.contacts, { ...newContact, id: uuidv4() }],
+    // }));
   };
 
   const handleChange = e => {
     const { name, value } = e.target;
-    setState(prevState => ({ ...prevState, [name]: value }));
+    name === 'filter' && setFilter(value);
+    // setState(prevState => ({ ...prevState, [name]: value }));
   };
 
   const removeContact = e => {
     const id = e.target.id;
-    setState(prevState => ({
-      ...prevState,
-      contacts: prevState.contacts.filter(contact => contact.id !== id),
-      // filter: '',
-    }));
+    // setState(prevState => ({
+    //   ...prevState,
+    //   contacts: prevState.contacts.filter(contact => contact.id !== id),
+    //   // filter: '',
+
+    // }));
+    setСontactsList(contactsList.filter(contact => contact.id !== id));
   };
 
   const findContact = e => {
-    return state.contacts.filter(contact =>
-      contact.name.toLowerCase().includes(state.filter.toLowerCase()),
+    return contactsList.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase()),
     );
   };
 
   const isThereContact = name =>
-    state.contacts.some(
+    contactsList.some(
       contact => contact.name.toLowerCase() === name.toLowerCase(),
     );
 
@@ -85,7 +92,7 @@ const App = () => {
 
       <h2 className={s.title}>Contacts</h2>
 
-      <Filter filter={state.filter} onChange={handleChange} />
+      <Filter filter={filter} onChange={handleChange} />
 
       <ContactList findContact={findContact()} removeContact={removeContact} />
     </>
